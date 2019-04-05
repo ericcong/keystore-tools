@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+# Get the subject key identifier of a PEM.
+# Usage: ./get_subject_key_identifier foo.pem
+# Output: the subject key identifier of foo.pem.
+
+openssl x509 -in "$1" -noout -text | grep -A1 "Subject Key Identifier" | sed "1d;s/://g;s/ //g;s/\(.*\)/\L\1/g"
